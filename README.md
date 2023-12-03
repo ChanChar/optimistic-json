@@ -15,7 +15,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ```ruby
-parser = Optimistic::Json::Parser
+parser = Optimistic::Json::Parser.new
 
 parser.parse('["oops", "this", "is", "missing the end bracket')
 # => ["oops", "this", "is", "missing the end bracket"]
