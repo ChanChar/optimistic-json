@@ -2,6 +2,8 @@
 
 A Ruby implementation of [`best-effort-json-parser`](https://github.com/beenotung/best-effort-json-parser) which attempts to parse incomplete JSON in a best-effort manner.
 
+Uses [`multi_json`](https://github.com/intridea/multi_json#supported-json-engines) to support a number of common JSON engines.
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
