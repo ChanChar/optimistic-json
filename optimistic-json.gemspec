@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "Heavily inspired by [`best-effort-json-parser`]" \
     "(https://github.com/beenotung/best-effort-json-parser) to parse potentially " \
     "incomplete JSON in a best effort manner."
-  spec.homepage = "https://github.com/ChanChar/optimistic_json"
+  spec.homepage = "https://github.com/ChanChar/optimistic-json"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
