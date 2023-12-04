@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/optimistic-json.svg)](https://badge.fury.io/rb/optimistic-json)
+
 # Optimistic::Json
 
 A Ruby implementation of [`best-effort-json-parser`](https://github.com/beenotung/best-effort-json-parser) which attempts to parse incomplete JSON in a best-effort manner.
