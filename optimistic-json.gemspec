@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["charleschanlee@gmail.com"]
 
   spec.summary = "Parse potentially incomplete JSON in a best effort manner."
-  spec.description = "Heavily inspired by [`best-effort-json-parser`]" \
+  spec.description = "Ruby implementation of [`best-effort-json-parser`]" \
     "(https://github.com/beenotung/best-effort-json-parser) to parse potentially " \
     "incomplete JSON in a best effort manner."
   spec.homepage = "https://github.com/ChanChar/optimistic-json"
