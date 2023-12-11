@@ -187,14 +187,126 @@ RSpec.describe Optimistic::Json::Parser do
       end
 
       context "when simple" do
-        let(:hash) { { "key1" => "val1", "key2" => "val2" } }
-        let(:tokens) { hash.to_json }
+        let(:object) { { "key1" => "val1", "key2" => "val2" } }
+        let(:tokens) { MultiJson.dump(object) }
 
-        it { is_expected.to eq(hash) }
+        it { is_expected.to eq(object) }
       end
 
-      # context "when complex" do
-      # end
+      context "when complex" do
+        let(:object) do
+          {
+            "int" => 42,
+            "float" => 12.34,
+            "arr" => [42, 12.34, [42, 12.34], { "int" => 42, "float" => 12.34 }],
+            "obj" => {
+              "int" => 42,
+              "float" => 12.34,
+              "arr" => [42, 12.34, [42, 12.34], { "int" => 42, "float" => 12.34 }],
+              "obj" => {
+                "int" => 42,
+                "float" => 12.34
+              }
+            }
+          }
+        end
+        let(:tokens) { MultiJson.dump(object) }
+
+        it { is_expected.to eq(object) }
+
+        context "when incomplete" do
+          let(:tokens) { MultiJson.dump(object)[0..-2] }
+
+          it { is_expected.to eq(object) }
+        end
+      end
+    end
+
+    context "with space-like tokens" do
+      let(:object) { { "key1" => "val1", "key2" => "val2" } }
+
+      context "with newlines" do
+        let(:tokens) do
+          <<-JSON
+            {
+              \n\n"key1": \n"val1",
+              \n"key2": \n\n"val2"
+            }\n\n
+          JSON
+        end
+
+        it { is_expected.to eq(object) }
+      end
+
+      context "with returns" do
+        let(:tokens) do
+          <<-JSON
+            {
+              \r\r"key1": \r"val1",
+              \r"key2": \r\r"val2"
+            }\r\r
+          JSON
+        end
+
+        it { is_expected.to eq(object) }
+      end
+
+      context "with tabs" do
+        let(:tokens) do
+          <<-JSON
+              {
+                \t\t"key1": \t"val1",
+                \t"key2": \t\t"val2"
+              }\t\t
+          JSON
+        end
+
+        it { is_expected.to eq(object) }
+      end
+
+      context "with additional spaces" do
+        let(:tokens) do
+          <<-JSON
+              {
+                  "key1":  "val1",
+                "key2":   "val2"
+              }
+          JSON
+        end
+
+        it { is_expected.to eq(object) }
+      end
+    end
+
+    context "with invalid tokens" do
+      context "with an unknown token" do
+        let(:tokens) { '{ "key": unknown }' }
+
+        it "raises a MissingParser error" do
+          expect { parse }.to raise_error(described_class::MissingParser)
+        end
+      end
+
+      context "with invalid tokens" do
+        let(:tokens) { ":unknown" }
+
+        it "raises a MissingParser error" do
+          expect { parse }.to raise_error(described_class::MissingParser)
+        end
+      end
+    end
+
+    context "with additional tokens" do
+      let(:tokens) { '[1, 2, 3] "extra"' }
+      let(:expected) { [1, 2, 3] }
+
+      it "logs" do
+        expect(parser.logger).to receive(:warn).with('Unable to parse the following JSON:  "extra"')
+        expect(parser.logger).to receive(:info).with({ tokens: tokens, data: expected,
+                                                       remaining_tokens: ' "extra"' })
+
+        expect(parse).to eq(expected)
+      end
     end
   end
 end

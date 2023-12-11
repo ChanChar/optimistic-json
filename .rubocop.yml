@@ -28,3 +28,9 @@ Lint/BooleanSymbol:
 
 Rspec/NestedGroups:
   Max: 30
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 3

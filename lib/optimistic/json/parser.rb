@@ -37,7 +37,7 @@ module Optimistic
         null: ["n"]
       }.freeze
 
-      attr_reader :parsers, :logger
+      attr_accessor :parsers, :logger
 
       def initialize(logger: nil)
         @logger = logger || ::Logger.new($stdout)
