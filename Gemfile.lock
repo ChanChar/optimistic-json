@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    optimistic-json (0.1.1)
+    optimistic-json (0.1.2)
       logger
       multi_json (~> 1.0)
       sorbet-runtime
