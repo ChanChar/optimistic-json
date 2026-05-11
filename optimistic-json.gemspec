@@ -38,7 +38,6 @@ Gem::Specification.new do |spec|
   # Allow users to swap JSON engine (e.g. Oj, Yajl, the default JSON gem)
   spec.add_dependency "logger"
   spec.add_dependency "multi_json", "~> 1.0"
-  spec.add_dependency "sorbet-runtime"
 
   spec.add_development_dependency "debug"
   spec.add_development_dependency "gem-release"
