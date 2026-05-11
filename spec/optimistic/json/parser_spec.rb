@@ -71,19 +71,19 @@ RSpec.describe Optimistic::Json::Parser do
       context "when incomplete positive floats" do
         let(:tokens) { "12." }
 
-        it { is_expected.to eq(12) }
+        it { is_expected.to eq(12.0) }
       end
 
       context "when incomplete negative floats" do
         let(:tokens) { "-12." }
 
-        it { is_expected.to eq(-12) }
+        it { is_expected.to eq(-12.0) }
       end
 
       context "when incomplete negative integers" do
         let(:tokens) { "-" }
 
-        it { is_expected.to eq(-0) }
+        it { is_expected.to eq(0) }
       end
 
       context "when invalid numbers" do
