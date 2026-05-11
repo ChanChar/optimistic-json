@@ -26,7 +26,10 @@ Metrics/AbcSize:
 Lint/BooleanSymbol:
   Enabled: false
 
-Rspec/NestedGroups:
+Layout/LeadingCommentSpace:
+  AllowRBSInlineAnnotation: true
+
+RSpec/NestedGroups:
   Max: 30
 
 RSpec/MessageSpies:
