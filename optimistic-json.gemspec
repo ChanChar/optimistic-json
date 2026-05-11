@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "optimistic-json"
   spec.version = Optimistic::Json::VERSION
   spec.authors = ["Charles C. Lee"]
-  spec.email = ["charleschanlee@gmail.com"]
+  spec.email = ["contact@charleschanlee.com"]
 
   spec.summary = "Parse potentially incomplete JSON in a best effort manner."
   spec.description = "Ruby implementation of [`best-effort-json-parser`]" \
